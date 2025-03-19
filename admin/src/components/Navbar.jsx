@@ -23,12 +23,17 @@ export default Navbar
 
 
 
-function Profile() {
+export function Profile() {
+  const handleLogout =()=>{
+    console.log("hello")
+    localStorage.removeItem('Token')
+    window.location.reload();
+
+  }
   return (
     <div className='shadow rounded bg-white text-black p-3 px-6 absolute right-6 top-11'>
       {/* <div>userName</div> */}
-      <span className='flex gap-2 items-center'>Logout<RiLogoutCircleRLine />
-</span>
+      <span className='flex gap-2 items-center'onClick={handleLogout}>Logout<RiLogoutCircleRLine /></span>
     </div>
   )
 }
