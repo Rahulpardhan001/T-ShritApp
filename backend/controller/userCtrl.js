@@ -58,6 +58,8 @@ const LoginCtrl =async(req,res)=>{
     }
 }
 
+// ##################### Change current password Controller ##################//
+
 const changeCurrentPassword = async(req,res)=>{
     const {oldPassword,newPassword} = req.body;
     const user = await User.findById(req.user?.id);
