@@ -135,9 +135,10 @@ const getSingleProductctrl = async (req, res) => {
 // ######################## Update product #############################
 const updateproudctctrl = async (req, res) => {
   try {
-    console.log(req.files,"update controller,data")
+    console.log(req.files, "update controller,data");
     const { id } = req.params;
-    const { productName, description, price, category, brandName, stock } =req.body;
+    const { productName, description, price, category, brandName, stock } =
+      req.body;
 
     // Find product by ID
     let product = await productModel.findById(id);
@@ -147,15 +148,6 @@ const updateproudctctrl = async (req, res) => {
         .json({ success: false, message: "Product not found" });
     }
 
-    // Delete cloudinary present image then update
-    // const imageUrl = product?.image;
-    // if (Array.isArray(imageUrl) && imageUrl.length > 0) {
-    //   await Promise.all(
-    //     imageUrl.map(async (img) => {
-    //       return await deleteCloudinary(img); // Pass `img` to the function
-    //     })
-    //   );
-    // }
     // now update image
     let uploadedImages = [];
     if (req.files?.image) {
@@ -193,10 +185,34 @@ const updateproudctctrl = async (req, res) => {
   }
 };
 
+// ######################## search product #############################
+const searchctrl = async (req, res) => {
+  try {
+    const { query } = req.query;
+    if (!query) {
+      return res.status(400).json({ message: "Search query is required" });
+    }
+    const product = await productModel.find({
+      $or: [
+        { productName: { $regex: query, $options: "i" } },
+        { category: { $regex: query, $options: "i" } },
+        { description: { $regex: query, $options: "i" } },
+      ],
+    });
+    if (product.length === 0) {
+      return res.status(404).json({ message: "Product NOt Found!" });
+    }
+
+    res.status(200).json({ success: true, product });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
 module.exports = {
   addProductCtrl,
   getproductCtrl,
   deleteproductctrl,
   updateproudctctrl,
   getSingleProductctrl,
+  searchctrl,
 };
