@@ -11,6 +11,7 @@ function ProductUpdate() {
   // const navigate = useNavigate()
   const { products,isLoading } = useSelector((state) => state.Product);
   const {id} =  useParams();
+  const navigate = useNavigate()
   // console.log(id,"single product data")
   //  console.log(Product,"product list")
   const dispatch = useDispatch();
@@ -74,7 +75,7 @@ useEffect(() => {
 
  
 
-  const submitHandle = (e) => {
+  const submitHandle = async(e) => {
     e.preventDefault();
     // debugger;
     console.log(formData, "Data");
@@ -91,7 +92,11 @@ useEffect(() => {
       formDatas.append("image", img);
     });
   // console.log(formDatas,"datas form ka hai")
-    dispatch(UpdateProduct({id,formDatas})); 
+   const res = await dispatch(UpdateProduct({id,formDatas})); 
+   console.log(res,"update res")
+   if(res.payload.success === true){
+    navigate("/")
+   }
   };
   
 
