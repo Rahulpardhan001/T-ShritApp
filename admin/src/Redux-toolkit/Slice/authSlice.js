@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { LoginThunk, signupThunk } from "../../Thunk/authThunk";
 import toast from "react-hot-toast";
-import { Navigate, redirect, useNavigate } from "react-router-dom";
+import {redirect } from "react-router-dom";
 
 
 
@@ -16,7 +16,13 @@ const authSlice = createSlice({
         profileModel: false,
         logoutModel: false
     },
-    reducers:{},
+     
+    reducers:{
+      logout:(state)=>{
+        state.token = null
+        localStorage.removeItem('Token')
+      }
+    },
     extraReducers:(builder)=>{
             builder
             // signUp
@@ -31,6 +37,7 @@ const authSlice = createSlice({
       })
       .addCase(signupThunk.rejected, (state, action) => {
         state.loading = false;
+        // toast.error(action.payload.message)
         state.error = action.error.message;
       })
     // **************Login *****************//
@@ -57,5 +64,5 @@ const authSlice = createSlice({
     }
 })
 
-export const {} = authSlice.actions;
+export const {logout} = authSlice.actions;
 export default authSlice.reducer;
