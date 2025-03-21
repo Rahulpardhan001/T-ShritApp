@@ -24,19 +24,19 @@ function Login() {
   // **************handle submit button************//
 const submitHandle=async(e)=>{
     e.preventDefault();
-    console.log(formData)
+    // console.log(formData)
    const res = await dispatch(LoginThunk(formData));
-   console.log(res.payload,"data ++++++++++++++++++")
+  //  console.log(res.payload,"data ++++++++++++++++++")
    if(res.payload.success === true){
     navigate('/')
    }
    }
   return (
     <>
-      <div className="flex justify-center h-[80vh] items-center">
-        <form  onSubmit={submitHandle} className="shadow shadow-green-400  w-[30%] p-8">
-          <h2 className="text-center text-4xl font">Login</h2>
-          <div className="flex flex-col gap-2 py-1.5 pb-5">
+      <div className="flex h-[80vh] justify-center items-center">
+        <form  onSubmit={submitHandle} className="p-8 shadow-xl w-[30%]">
+          <h2 className="text-4xl text-center font">Login</h2>
+          <div className="flex flex-col gap-2 pb-5 py-1.5">
             <label className="text-xl" htmlFor="">
               Email
             </label>
@@ -46,7 +46,7 @@ const submitHandle=async(e)=>{
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="shadow py-2.5 focus:outline-none rounded px-1.5"
+              className="rounded shadow focus:outline-none px-1.5 py-2.5"
             />
           </div>
           <div className="flex flex-col gap-2 py-1.5">
@@ -59,7 +59,7 @@ const submitHandle=async(e)=>{
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="shadow py-2.5 focus:outline-none rounded px-1.5"
+              className="rounded shadow focus:outline-none px-1.5 py-2.5"
             />
           </div>
           <h3>
@@ -70,7 +70,7 @@ const submitHandle=async(e)=>{
           </h3>
 
           <div className="flex justify-center mt-7">
-            <button className="shadow hover:shadow-green-600 p-2 bg-green-700 text-white  rounded px-6 text-2xl cursor-pointer">
+            <button className="bg-green-700 p-2 rounded shadow text-2xl text-white cursor-pointer hover:shadow-green-600 px-6">
               Login
             </button>
           </div>

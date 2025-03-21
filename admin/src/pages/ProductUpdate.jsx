@@ -2,21 +2,24 @@ import React, { useEffect, useState } from "react";
 import CustomInput, { CustomImage } from "../components/CustomInput";
 import { AiFillProduct } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { AddProduct, GetSingleProduct, UpdateProduct } from "../Thunk/ProductThunk";
+import {
+  AddProduct,
+  GetSingleProduct,
+  UpdateProduct,
+} from "../Thunk/ProductThunk";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../assets/Loader/Loading";
 
-
 function ProductUpdate() {
   // const navigate = useNavigate()
-  const { products,isLoading } = useSelector((state) => state.Product);
-  const {id} =  useParams();
-  const navigate = useNavigate()
+  const { products, isLoading } = useSelector((state) => state.Product);
+  const { id } = useParams();
+  const navigate = useNavigate();
   // console.log(id,"single product data")
   //  console.log(Product,"product list")
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    productName:"",
+    productName: "",
     description: "",
     price: "",
     category: "",
@@ -25,25 +28,25 @@ function ProductUpdate() {
     image: [],
   });
   // const [preview, setPreview] = useState([]);
-useEffect(()=>{
-dispatch(GetSingleProduct(id));
-},[dispatch,id])
+  useEffect(() => {
+    dispatch(GetSingleProduct(id));
+  }, [dispatch, id]);
 
-useEffect(() => {
-  // debugger;
-  if (products) {
-    setFormData((prev) => ({
-      ...prev,
-      productName: products.productName || "",
-      description: products.description || "",
-      price: products.price || "",
-      category: products.category || "",
-      brandName: products.brandName || "",
-      stock: products.stock || "",
-      image :products.image||[],
-    }));
-  }
-}, [products]);
+  useEffect(() => {
+    // debugger;
+    if (products) {
+      setFormData((prev) => ({
+        ...prev,
+        productName: products.productName || "",
+        description: products.description || "",
+        price: products.price || "",
+        category: products.category || "",
+        brandName: products.brandName || "",
+        stock: products.stock || "",
+        image: products.image || [],
+      }));
+    }
+  }, [products]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,8 +67,8 @@ useEffect(() => {
       image: [...prev.image, ...files], // Append new images
     }));
   };
-  
-// console.log(formData.image,"my image is")
+
+  // console.log(formData.image,"my image is")
   const handleDeleteImage = (id) => {
     setFormData((prev) => ({
       ...prev,
@@ -73,13 +76,11 @@ useEffect(() => {
     }));
   };
 
- 
-
-  const submitHandle = async(e) => {
+  const submitHandle = async (e) => {
     e.preventDefault();
     // debugger;
     console.log(formData, "Data");
-  
+
     const formDatas = new FormData();
     formDatas.append("productName", formData.productName);
     formDatas.append("description", formData.description);
@@ -87,22 +88,21 @@ useEffect(() => {
     formDatas.append("category", formData.category);
     formDatas.append("brandName", formData.brandName);
     formDatas.append("stock", formData.stock);
-  
+
     formData.image.forEach((img) => {
       formDatas.append("image", img);
     });
-  // console.log(formDatas,"datas form ka hai")
-   const res = await dispatch(UpdateProduct({id,formDatas})); 
-   console.log(res,"update res")
-   if(res.payload.success === true){
-    navigate("/")
-   }
+    // console.log(formDatas,"datas form ka hai")
+    const res = await dispatch(UpdateProduct({ id, formDatas }));
+    //  console.log(res,"update res")
+    if (res.payload.success === true) {
+      navigate("/");
+    }
   };
-  
 
   return (
     <>
-    {isLoading && <Loading/>}
+      {isLoading && <Loading />}
       <section>
         <div className=" shadow ">
           <div className="flex justify-center ">
@@ -181,31 +181,31 @@ useEffect(() => {
               icon={<span className="text-red-500">*</span>}
             />
 
-            
-<div className="flex flex-wrap gap-3">
-  {formData.image &&
-    formData.image.map((img, index) => {
-      // Check if the image is a File object or a URL
-      const imgUrl = img instanceof File ? URL.createObjectURL(img) : img;
+            <div className="flex flex-wrap gap-3">
+              {formData.image &&
+                formData.image.map((img, index) => {
+                  // Check if the image is a File object or a URL
+                  const imgUrl =
+                    img instanceof File ? URL.createObjectURL(img) : img;
 
-      return (
-        <div key={index} className="relative">
-          <img
-            src={imgUrl}
-            alt={`Preview ${index + 1}`}
-            className="w-20 h-20 object-cover rounded-lg border border-gray-300"
-          />
-          <button
-            type="button"
-            onClick={() => handleDeleteImage(index)}
-            className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-sm"
-          >
-            ✕
-          </button>
-        </div>
-      );
-    })}
-</div>
+                  return (
+                    <div key={index} className="relative">
+                      <img
+                        src={imgUrl}
+                        alt={`Preview ${index + 1}`}
+                        className="w-20 h-20 object-cover rounded-lg border border-gray-300"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteImage(index)}
+                        className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-sm"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  );
+                })}
+            </div>
 
             <div className=" max-w-[80%] text-center pt-3">
               <button
@@ -223,5 +223,3 @@ useEffect(() => {
 }
 
 export default ProductUpdate;
-
-
