@@ -34,6 +34,9 @@ if([username, email, password].some((field)=>field?.trim() ==='')){
 const LoginCtrl =async(req,res)=>{
     try {
       const {email,username, password} = req.body;
+      if(!email || ! password){
+        res.status(400).json({success:true, message:"All field are required"});
+      }
       const user = await User.findOne({$or:[{username},{email}]});
     //   console.log(user,"fufdjslfj")
       if(!user){

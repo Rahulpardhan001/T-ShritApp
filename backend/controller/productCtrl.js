@@ -190,7 +190,7 @@ const searchctrl = async (req, res) => {
   try {
     const { query } = req.query;
     if (!query) {
-      return res.status(400).json({ message: "Search query is required" });
+      return res.status(400).json({ message: "Search query is required",product: [] });
     }
     const product = await productModel.find({
       $or: [
@@ -199,7 +199,8 @@ const searchctrl = async (req, res) => {
         { description: { $regex: query, $options: "i" } },
       ],
     });
-    if (product.length === 0) {
+    
+    if (!product) {
       return res.status(404).json({ message: "Product NOt Found!" });
     }
 
