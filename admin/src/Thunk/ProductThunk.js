@@ -62,7 +62,6 @@ export const DeleteProduct = createAsyncThunk("/deleteproduct", async (id,{ reje
   // debugger;   
 
 try {
-  // console.log(formDatas,"ldsffkkkkkkk")
  const res = await handleRequest('DELETE',`/deleteproduct/${id}`);
  console.log(res.product,"delete data thunk")
 //    debugger;
@@ -90,5 +89,20 @@ export const UpdateProduct = createAsyncThunk("/updateproduct", async ( {id, for
   }
 );
 
+// **************************search Request ********************//
 
 
+
+export const SearchThunk = createAsyncThunk("/search", async (query,{ rejectWithValue }) => {
+  // debugger;   
+try {
+  console.log(query,"ldsffkkkkkkk")
+ const res = await handleRequest('GET', `/search?query=${query}`);
+ console.log(res.product,"get all data thunk search")
+//    debugger;
+ return res?.product;
+} catch (error) {
+  console.error("Error adding product:", error.response?.data || error.message);
+  return rejectWithValue(error.response?.data || error.message);
+}
+});
