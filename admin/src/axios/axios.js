@@ -12,16 +12,19 @@ const axiosInstance = axios.create({
 
 
 // Interceptor to add token to request
-// axiosInstance.interceptors.request.use(
-//   (config) => {
-//     const token = getCookie("token");
-//     if (token) {
-//       config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-//   },
-//   (error) => Promise.reject(error)
-// );
+axiosInstance.interceptors.request.use(
+  (config) => {
+    // const token = getCookie("token");
+    const Token =localStorage.getItem("Token")
+    const token = JSON.parse(Token)
+    // console.log(token)
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 // Interceptor for handling responses and token refresh logic
 axiosInstance.interceptors.response.use(
