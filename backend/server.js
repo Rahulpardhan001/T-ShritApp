@@ -9,7 +9,8 @@ const fileUpload = require('express-fileupload')
 // Routes
 const ProductRoute = require('./Routes/productRoute');
 const userRoute = require('./Routes/userRoute');
-const connectCloudinary = require('./utills/cloudnary');
+const OrderRoute = require('./Routes/orderRoute')
+// const connectCloudinary = require('./utills/cloudnary');
 const corsOptions ={
   origin:"http://localhost:5173",
   menthods:"GET, POST, PUT, DELETE, PATCH, HEAD",
@@ -25,6 +26,7 @@ app.use(express.urlencoded({extended:true}))
 
 // Routes
 app.use('/api/', ProductRoute)
+app.use('/api/',OrderRoute)
 app.use('/api/user/',userRoute)
 app.get('/', (req, res) => {
   res.send('Hello World!')
