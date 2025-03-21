@@ -1,6 +1,5 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
-import Dashbord from "./pages/Dashbord"
 import AdminLayout from "./pages/AdminLayout"
 import Order from "./pages/Order"
 import Product from "./pages/Product"
@@ -17,16 +16,17 @@ function App() {
 
   return (
     <>
-    <Navbar/>
+   
+      <Navbar/>
     <Routes>
         <Route path="/login" element ={<Login/>}/>
         <Route path="/signup" element ={<Signup/>}/>
       {/* <Route path="/" element ={<Dashbord/>} /> */}
       <Route path="/" element={<AdminLayout/>}>
         <Route path="order"element ={ <PrivateRoute><Order/></PrivateRoute> }/>
-        <Route path="getproducts" element ={<PrivateRoute><Product/></PrivateRoute>}/>
-        <Route path="addproduct" element ={<AddProudct/>}/>
-        <Route path="update/:id" element ={<ProductUpdate/>}/>
+        <Route path="" element ={<PrivateRoute><Product/></PrivateRoute>}/>
+        <Route path="addproduct" element ={<PrivateRoute><AddProudct/></PrivateRoute> }/>
+        <Route path="update/:id" element ={<PrivateRoute><ProductUpdate/></PrivateRoute> }/>
       </Route>
 
       <Route path="*" element={<PageNoteFound/>} />

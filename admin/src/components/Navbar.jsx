@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import {Link, useNavigate} from 'react-router-dom'
 import { logout } from '../Redux-toolkit/Slice/authSlice';
 import { Dropdown } from "flowbite-react";
+import Search from './Search';
 function Navbar() {
   const [toggle,setToggle] = useState(false)
  const navigate =  useNavigate()
@@ -26,6 +27,7 @@ function Navbar() {
       <div className="logo flex items-center gap-3 ">
       <Link to={'/'}><GiLevelFour className='text-3xl text-white' /></Link>
       </div>
+      <Search/>
       <div>
       <Dropdown label="Profile" dismissOnClick={false} className="!border-0 !shadow-none" >
       <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
