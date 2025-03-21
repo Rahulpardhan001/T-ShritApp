@@ -4,6 +4,7 @@ import {
   DeleteProduct,
   GetProduct,
   GetSingleProduct,
+  SearchThunk,
   UpdateProduct,
 } from "../../Thunk/ProductThunk";
 import toast from "react-hot-toast";
@@ -75,9 +76,7 @@ const productSlice = createSlice({
 
       // *****************Delete product*******************//
       .addCase(DeleteProduct.fulfilled, (state, action) => {
-        // console.log(action.payload,"meeeeeeeeeeeeeeeeeeeeeee")
-        // state.products = action.payload || [];
-        console.log(action.meta.arg, "arg is si sis");
+        // console.log(action.meta.arg, "arg is si sis");
         state.products = state.products.filter(
           (p) => p._id !== action.meta.arg
         );
@@ -91,10 +90,29 @@ const productSlice = createSlice({
       })
       .addCase(DeleteProduct.rejected, (state, action) => {
         state.status = action.error;
-        state.error = action.error;
+        // debugger;
+        // toast.error("product can't deleted")
+        state.error = action.payload.message;
       })
       
      
+      // *****************search product*******************//
+      .addCase(SearchThunk.fulfilled, (state, action) => {
+        console.log(action.payload,"meeeeeeeeeeeeeeeeeeeeeee")
+        state.products = action.payload || [];
+        // state.products.push(action.payload);
+        state.status = "success";
+        state.isLoading = false;
+        // toast.success(action.payload.message);
+      })
+      .addCase(SearchThunk.pending, (state, action) => {
+        state.status = "loading";
+        state.isLoading = true;
+      })
+      .addCase(SearchThunk.rejected, (state, action) => {
+        state.status = action.error;
+        state.error = action.error;
+      })
   },
 });
 
