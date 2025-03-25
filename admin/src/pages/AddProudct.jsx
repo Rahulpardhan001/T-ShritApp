@@ -4,9 +4,12 @@ import { AiFillProduct } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { AddProduct } from "../Thunk/ProductThunk";
 import Loading from "../assets/Loader/Loading";
+import {useNavigate } from "react-router-dom";
 
 function AddProudct() {
-  const [ isLoading, setIsLoading] = useState(false);
+  // const [ isLoading, setIsLoading] = useState(false);
+  const {isLoading} = useSelector((state)=>state.Product)
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     productName: "",
@@ -41,8 +44,7 @@ function AddProudct() {
 
   const submitHandle =async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    console.log(formData, "formDAta");
+    // console.log(formData, "formDAta");
     // debugger;
     const formDatas = new FormData();
     formDatas.append("productName", formData.productName);
@@ -54,12 +56,11 @@ function AddProudct() {
     formData.image.forEach((img) => {
       formDatas.append("image", img);
     });
-    // console.log(formDatas,"form data go to")
 
    const res = await dispatch(AddProduct(formDatas));
-   console.log(res,"res data in add product")
-   if(res?.payload?.success === true){
-    setIsLoading(false);
+   console.log(res.meta.requestStatus,"res data in add product")
+   if(res?.meta?.requestStatus === "fulfilled"){
+    navigate('/')
     setFormData({
       productName: "",
       description: "",
