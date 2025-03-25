@@ -10,16 +10,14 @@ export const AddProduct = createAsyncThunk("/addproduct", async (formDatas, { re
   try {
     // console.log(formDatas,"ldsffkkkkkkk")
     // debugger;
-    const response = await axios.post(`${ import.meta.env.VITE_API_URL}/addproduct`, formDatas, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
+    const response = await handleRequest('POST','/addproduct',formDatas, true)
 
-    console.log(response.data, "Product added successfully");
-    toast.success(response.data.message)
+    console.log(response, "Product added successfully");
+    toast.success(response.message)
     return response.data;
   } catch (error) {
-    console.error("Error adding product:", error.response?.data || error.message);
-    return rejectWithValue(error.response?.data || error.message);
+    console.error("Error adding product:", error.response || error.message);
+    return rejectWithValue(error.response || error.message);
   }
 });
 
