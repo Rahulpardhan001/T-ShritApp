@@ -20,7 +20,23 @@ const productSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-
+           // *****************add product*******************//
+      .addCase(AddProduct.fulfilled, (state, action) => {
+        // console.log(action.payload,"meeeeeeeeeeeeeeeeeeeeeee")
+        state.products = action.payload || [];
+        // state.products.push(action.payload);
+        state.status = "success";
+        state.isLoading = false;
+        // toast.success(action.payload.message);
+      })
+      .addCase(AddProduct.pending, (state, action) => {
+        state.status = "loading";
+        state.isLoading = true;
+      })
+      .addCase(AddProduct.rejected, (state, action) => {
+        state.status = action.error;
+        state.error = action.error;
+      })
       // *****************get product*******************//
       .addCase(GetProduct.fulfilled, (state, action) => {
         // console.log(action.payload,"meeeeeeeeeeeeeeeeeeeeeee")
