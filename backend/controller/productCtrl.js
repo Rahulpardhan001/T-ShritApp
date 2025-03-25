@@ -7,8 +7,7 @@ const { uploadOnCloudinary, deleteCloudinary } = require("../utills/cloudnary");
 // ######################## Add Proudct controller #############################
 const addProductCtrl = async (req, res) => {
   try {
-    const { productName, description, price, category, brandName, stock } =
-      req.body;
+    const { productName, description, price, category, brandName, stock } = req.body;
     console.log(req.body, "ldjflsjdlfj");
     // // console.log(req.files)
     if (
@@ -27,7 +26,7 @@ const addProductCtrl = async (req, res) => {
       return res.status(400).json({ message: "Product already exists" });
     }
 
-    // console.log(req.files.image[0]?.path)
+    console.log(req.files)
     const uploadimages = req?.files?.image;
     const uploadedImages = await Promise.all(
       uploadimages.map((img) => uploadOnCloudinary(img?.path))
