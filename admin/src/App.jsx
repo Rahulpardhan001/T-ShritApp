@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import PrivateRoute from "./route/PrivateRoute"
+import DetailPage from "./components/DetailPage"
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="" element ={<PrivateRoute><Product/></PrivateRoute>}/>
         <Route path="addproduct" element ={<PrivateRoute><AddProudct/></PrivateRoute> }/>
         <Route path="update/:id" element ={<PrivateRoute><ProductUpdate/></PrivateRoute> }/>
+        <Route path="detailpage" element ={<PrivateRoute><DetailPage/></PrivateRoute> }/>
       </Route>
 
       <Route path="*" element={<PageNoteFound/>} />
