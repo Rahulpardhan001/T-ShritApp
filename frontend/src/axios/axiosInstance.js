@@ -4,7 +4,7 @@ import {toast} from 'react-toastify'
 
 const axiosInstance = axios.create({
   // baseURL: "http://localhost:8000/api",
-  baseURL: "https://t-shritapp.onrender.com/",
+  baseURL: "https://t-shritapp.onrender.com/"|| "http://localhost:8000/api",
   headers: {
     "Content-Type": "application/json",
   },
