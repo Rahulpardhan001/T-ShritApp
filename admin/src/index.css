@@ -48,3 +48,8 @@
   z-index: -1;
   animation: rotateBorderColor 4s linear infinite;
 }
+
+.slick-next{
+  display: none !important;
+  
+}

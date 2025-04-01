@@ -6,8 +6,8 @@ const responseHandler = require("../utills/responseHandler");
 const addToCart = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
-    // const userId = req.user._id;
-    const userId = '67d94d5332988ea09c6faa88'
+    const userId = req.user._id;
+    // const userId = '67d94d5332988ea09c6faa88'
     const productfind = await productModel.findById(productId);
     // console.log(productfind,"product found")
     let cart = await CartModel.findOne({ userId });
@@ -34,8 +34,8 @@ const addToCart = async (req, res) => {
 // *******************get all cart items *****************//
 const getAllCartItemCtrl = async (req, res) => {
   try {
-    const userId = "67d94d5332988ea09c6faa88";
-    // const userId = req.user._id;
+    // const userId = "67d94d5332988ea09c6faa88";
+    const userId = req.user._id;
     const cartitem = await CartModel.findOne({ userId }).populate(
       "items.productId"
     );
@@ -58,7 +58,9 @@ const getAllCartItemCtrl = async (req, res) => {
 const deleteCartItemCtrl = async (req, res) => {
   try {
     const { id } = req.params;
-    const userId = '67d94d5332988ea09c6faa88'
+    const userId = req.user._id;
+
+    // const userId = '67d94d5332988ea09c6faa88'
     let cart = await CartModel.findOne({ userId });
     // console.log(cart);
     if (!cart) {
@@ -72,7 +74,7 @@ const deleteCartItemCtrl = async (req, res) => {
     return responseHandler.success(
       res,
       cart,
-      "Item remove in cart Successfuly",
+      "Item remove in cart Successfuly",  
     );
   } catch (error) {
     console.log(error);
@@ -83,8 +85,11 @@ const deleteCartItemCtrl = async (req, res) => {
 // *******************update cart items *****************//
 const updateCartItemCtrl = async (req, res) => {
   try {
-    const { productId, newquantity } = req.body;
+    const { productId, quantity    } = req.body;
+    const newquantity = quantity;
     const userId = req.user._id;
+    // const userId = '67d94d5332988ea09c6faa88'
+
     // Validate request body
     if (!userId || !productId || !newquantity || newquantity <= 0) {
       return responseHandler.error(res, "Invalid request data", 400);

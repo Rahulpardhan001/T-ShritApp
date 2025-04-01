@@ -5,54 +5,115 @@ const fs = require("fs");
 const { uploadOnCloudinary, deleteCloudinary } = require("../utills/cloudnary");
 
 // ######################## Add Proudct controller #############################
+// const addProductCtrl = async (req, res) => {
+//   try {
+//     const { productName, description, price, category, brandName, stock } = req.body;
+//     // console.log(req.body, "ldjflsjdlfj");
+//     // // console.log(req.files)
+//     if (
+//       !productName ||
+//       !description ||
+//       !price ||
+//       !category ||
+//       !brandName ||
+//       !stock
+//     ) {
+//       return res.status(400).json({ message: "All fields are required" });
+//     }
+
+//     const existing = await productModel.findOne({ productName });
+//     if (existing) {
+//       return res.status(400).json({ message: "Product already exists" });
+//     }
+
+//     // console.log(req.files)
+//     const uploadimages = req?.files?.image;
+//     const uploadedImages = await Promise.all(
+//       uploadimages.map((img) => uploadOnCloudinary(img?.path))
+//     );
+
+//     const newProduct = new productModel({
+//       productName,
+//       description,
+//       price,
+//       category,
+//       brandName,
+//       stock,
+//       image: uploadedImages.map((img) => img.secure_url), // Store Cloudinary URL
+//     });
+
+//     await newProduct.save();
+//     return res.status(201).json({
+//       success: true,
+//       message: "Product added successfully",
+//       product: uploadedImages,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(500).json({ message: "Internal server error" });
+//   }
+// };
+
+
+
+
+
 const addProductCtrl = async (req, res) => {
   try {
-    const { productName, description, price, category, brandName, stock } = req.body;
-    console.log(req.body, "ldjflsjdlfj");
-    // // console.log(req.files)
-    if (
-      !productName ||
-      !description ||
-      !price ||
-      !category ||
-      !brandName ||
-      !stock
-    ) {
-      return res.status(400).json({ message: "All fields are required" });
+    const products = req.body.products; // Expecting an array of products
+    if (!Array.isArray(products) || products.length === 0) {
+      return res.status(400).json({ message: "Products array is required" });
     }
 
-    const existing = await productModel.findOne({ productName });
-    if (existing) {
-      return res.status(400).json({ message: "Product already exists" });
+    let savedProducts = [];
+
+    for (const product of products) {
+      const { productName, description, price, category, brandName, stock, images } = product;
+
+      if (!productName || !description || !price || !category || !brandName || !stock) {
+        return res.status(400).json({ message: "All fields are required for each product" });
+      }
+
+      // Check if the product already exists
+      const existing = await productModel.findOne({ productName });
+      if (existing) {
+        return res.status(400).json({ message: `Product ${productName} already exists` });
+      }
+
+      // Upload images to Cloudinary for each product
+      if (images && images.length > 0) {
+        const uploadedImages = await Promise.all(
+          images.map((imgPath) => uploadOnCloudinary(imgPath)) // Assuming imgPath is the path to the image
+        );
+
+        const newProduct = new productModel({
+          productName,
+          description,
+          price,
+          category,
+          brandName,
+          stock,
+          image: uploadedImages.map((img) => img.secure_url), // Store Cloudinary URL
+        });
+
+        const savedProduct = await newProduct.save();
+        savedProducts.push(savedProduct);
+      } else {
+        return res.status(400).json({ message: "Each product must have at least one image" });
+      }
     }
 
-    console.log(req.files)
-    const uploadimages = req?.files?.image;
-    const uploadedImages = await Promise.all(
-      uploadimages.map((img) => uploadOnCloudinary(img?.path))
-    );
-
-    const newProduct = new productModel({
-      productName,
-      description,
-      price,
-      category,
-      brandName,
-      stock,
-      image: uploadedImages.map((img) => img.secure_url), // Store Cloudinary URL
-    });
-
-    await newProduct.save();
     return res.status(201).json({
       success: true,
-      message: "Product added successfully",
-      product: uploadedImages,
+      message: "Products added successfully",
+      products: savedProducts, // Returning all saved products
     });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
 
 // ######################## get All Products #############################
 const getproductCtrl = async (req, res) => {
@@ -83,7 +144,19 @@ const deleteproductctrl = async (req, res) => {
     // const product = await productModel.findByIdAndDelete(req.params.id);
     const product = await productModel.findOne({ _id: id });
 
-    const imageUrl = product.image; // Assuming `image` is an array of image names
+    
+    const imageUrl = product.image; // Assuming `image` is an array of image filenames
+
+    // 🔹 Delete images from local `uploads/` folder
+    // let imagePath;
+    // imageUrl.map(async (img) => {
+    //    imagePath = path.join(__dirname, "../uploads", img); // Construct full path
+    // })
+    //   console.log(imagePath,"image path is ")
+    // fs.unlink(imagePath, (err) => {
+    //   if (err) console.error("Error deleting file:", err);
+    //   else console.log("Deleted:", imagePath);
+    // });
 
     if (Array.isArray(imageUrl) && imageUrl.length > 0) {
       await Promise.all(

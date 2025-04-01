@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import {Link, useNavigate} from 'react-router-dom'
 import { logout } from '../Redux-toolkit/Slice/authSlice';
 import { Dropdown } from "flowbite-react";
+import { MdLogout } from "react-icons/md";
 import Search from './Search';
 function Navbar() {
   const [toggle,setToggle] = useState(false)
@@ -23,18 +24,18 @@ function Navbar() {
   }
   
   return (
-    <nav className='flex justify-between bg-amber-600 p-4  relative'>
+    <nav className='flex justify-between bg-amber-600 p-4 '>
       <div className="logo flex items-center gap-3 ">
       <Link to={'/'}><GiLevelFour className='text-3xl text-white' /></Link>
       </div>
       <Search/>
       <div>
-      <Dropdown label="Profile" dismissOnClick={false} className="!border-0 !shadow-none" >
-      <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-    
+      <Dropdown label="Profile" dismissOnClick={false} className="z-2" >
+      <Dropdown.Item className='flex items-center gap-3' onClick={handleLogout}>Logout <MdLogout /></Dropdown.Item>
     </Dropdown>
+
       </div>
-      {/* <div title='Profile' className="profile cursor-pointer text-2xl "onClick={handletoggle}><FaRegUser/> </div> */}
+     
 
   
     </nav>

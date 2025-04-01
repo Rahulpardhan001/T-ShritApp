@@ -40,7 +40,7 @@ const LoginCtrl =async(req,res)=>{
       const user = await User.findOne({$or:[{username},{email}]});
     //   console.log(user,"fufdjslfj")
       if(!user){
-        return res.status(403).json({success:true, message:"user not found!"});
+        return res.status(403).json({success:false, message:"user not found!"});
       }
       
      const isPasswordValid= await user.isPasswordCompare(password);
@@ -53,6 +53,7 @@ const LoginCtrl =async(req,res)=>{
         success:true,
         message:"Login Successful",
         Token,
+        username:user.username,
     })
     
     } catch (error) {

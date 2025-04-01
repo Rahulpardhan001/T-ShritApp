@@ -11,9 +11,10 @@ const ProductRoute = require('./Routes/productRoute');
 const userRoute = require('./Routes/userRoute');
 const OrderRoute = require('./Routes/orderRoute')
 const cartRoute = require('./Routes/cartRoute')
+const wishlistRoute = require('./Routes/wishlisthRoute')
 // const connectCloudinary = require('./utills/cloudnary');
 const corsOptions ={
-  origin:"http://localhost:5173",
+  origin:["http://localhost:5173", "http://localhost:5174"],
   menthods:"GET, POST, PUT, DELETE, PATCH, HEAD",
   credentials:true,
 }
@@ -30,6 +31,7 @@ app.use('/api/', ProductRoute)
 app.use('/api/',OrderRoute)
 app.use('/api/user/',userRoute)
 app.use('/api/',cartRoute)
+app.use('/api/',wishlistRoute)
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
