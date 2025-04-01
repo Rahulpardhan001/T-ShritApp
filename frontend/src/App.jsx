@@ -22,7 +22,7 @@ const App = () => {
   {/* <Header/> */}
   <Header/>
   <Routes>
-  <Route path='/' element={<ProtectedRoute><Home/></ProtectedRoute>}  />
+  <Route path='/' element={<Home/>}  />
   {/* <Route path='/me' element={<Home/>}/> */}
   <Route path='/product/:id' element={<ProtectedRoute><SinglePage/></ProtectedRoute>}  />
   <Route path='/cart' element={<ProtectedRoute><Cart/></ProtectedRoute>}  />
