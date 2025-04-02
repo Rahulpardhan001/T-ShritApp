@@ -4,7 +4,7 @@ import {toast} from 'react-toastify'
 
 const axiosInstance = axios.create({
   // baseURL: "http://localhost:8000/api",
-  baseURL: "https://t-shritapp.onrender.com/"|| "http://localhost:8000/api",
+  baseURL: "https://t-shritapp.onrender.com/api",
   headers: {
     "Content-Type": "application/json",
   },
@@ -36,7 +36,7 @@ axiosInstance.interceptors.response.use(
 );
 
 const handleRequest = async (method, url, data = null, isMultipart = false) => {
-  // debugger;
+  debugger;
   try {
     const response = await axiosInstance.request(
       method === "DELETE"
@@ -60,7 +60,7 @@ const handleRequest = async (method, url, data = null, isMultipart = false) => {
       case 401:
         localStorage.clear();
         toast.error("Unauthorized. Redirecting to login.");
-        // window.location.href = "/";
+        window.location.href = "/";
         break;
       case 404:
         toast.error("Requested resource not found.");
