@@ -44,7 +44,7 @@ function Login() {
             <div className="left">
               <img
                 className="w-full lg:w-[819px] h-auto "
-                src="../src/assets/img/authImg.png "
+                src="../src/assets/img/categoryImg/authImg.png"
                 alt=""
               />
             </div>

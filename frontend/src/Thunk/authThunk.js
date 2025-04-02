@@ -17,7 +17,7 @@ export const userLogin = createAsyncThunk('/user/login',async(userData, {rejectW
     try {
         // debugger;
         const res = await handleRequest('POST','/user/login',userData);
-        console.log(res,"my login response")
+        // console.log(res,"my login response")
         return res;
     } catch (error) {
         console.log(error.message)
@@ -31,7 +31,7 @@ export const userLogin = createAsyncThunk('/user/login',async(userData, {rejectW
           try {
             // debugger;
             const res = await handleRequest("POST", "/user/changepassword", { oldPassword, newPassword });
-            console.log(res, "password change success");
+            // console.log(res, "password change success");
             return res;
           } catch (error) {
             console.log(error.message);
