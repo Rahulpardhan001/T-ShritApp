@@ -21,7 +21,7 @@ export const fetchProduct = createAsyncThunk("/getproduct", async (_,{ rejectWit
 export const SearchThunk = createAsyncThunk("/search", async (query,{ rejectWithValue }) => {
   // debugger;   
 try {
-  console.log(query,"ldsffkkkkkkk")
+  // console.log(query,"ldsffkkkkkkk")
  const res = await handleRequest('GET', `/search?query=${query}`);
  console.log(res.product,"get all data thunk search")
 //    debugger;
