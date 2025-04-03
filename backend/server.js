@@ -17,7 +17,7 @@ const corsOptions = {
   origin: [
     "http://localhost:5173", 
     "http://localhost:5174",
-    "https://sprightly-speculoos-c7b014.netlify.app"
+    "https://merntshirtapp-rahul.netlify.app/"
   ],
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
 };
