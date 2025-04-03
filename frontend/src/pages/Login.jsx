@@ -26,7 +26,7 @@ function Login() {
     try {
       const resultAction = await dispatch(userLogin(inputData));
       if (userLogin.fulfilled.match(resultAction)) {
-        // debugger;
+        //  ;
         if (resultAction.payload.role === 'admin') {
           navigate('/admin');
         } else {

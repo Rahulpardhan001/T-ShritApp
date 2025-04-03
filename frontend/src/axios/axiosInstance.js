@@ -36,7 +36,7 @@ axiosInstance.interceptors.response.use(
 );
 
 const handleRequest = async (method, url, data = null, isMultipart = false) => {
-  // debugger;
+  //  ;
   try {
     const response = await axiosInstance.request(
       method === "DELETE"

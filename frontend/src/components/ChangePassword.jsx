@@ -14,7 +14,7 @@ const ChangePassword = () => {
   const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // debugger;
+    //  ;
     setError("");
     setSuccess("");
     

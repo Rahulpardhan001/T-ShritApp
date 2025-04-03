@@ -51,7 +51,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(userLogin.fulfilled, (state, action) => {
-        // debugger;
+        //  ;
         state.user = action.payload.username;
         localStorage.setItem("user",JSON.stringify(action.payload.username))
         // console.log(action.payload,"klfjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjls")
@@ -61,7 +61,7 @@ const authSlice = createSlice({
       })
       // Login Rejected
       .addCase(userLogin.rejected, (state, action) => {
-        // debugger;
+        //  ;
         state.error = action.payload;
         // toast.error(`Login failed ${action.payload.message}`);
       });

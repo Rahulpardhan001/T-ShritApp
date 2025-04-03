@@ -45,7 +45,7 @@ function AddProudct() {
   const submitHandle =async (e) => {
     e.preventDefault();
     // console.log(formData, "formDAta");
-    // debugger;
+    //  ;
     const formDatas = new FormData();
     formDatas.append("productName", formData.productName);
     formDatas.append("description", formData.description);

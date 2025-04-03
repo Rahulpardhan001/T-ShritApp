@@ -25,7 +25,7 @@ export const addwishlist = createAsyncThunk('/api/addtowishlist', async ({produc
 export const getwishlist = createAsyncThunk('/api/getwishlistitem', async (_, { rejectWithValue }) => {
     try {
         const res = await handleRequest('GET','/api/getwishlistitem')
-        // debugger;   
+        //  ;   
     //  console.log("response commee ",res)
       return res; 
      } catch (error) {

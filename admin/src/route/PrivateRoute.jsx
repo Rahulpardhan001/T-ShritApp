@@ -2,7 +2,7 @@
 // import { Navigate } from 'react-router-dom';
 
 // function PrivateRoute({children}) {
-//     // debugger;
+//     //  ;
   
 //   const token = localStorage.getItem('Token');
 //   if(!token){
@@ -28,7 +28,7 @@ function PrivateRoute({ children }) {
   // Decode token and check expiration
   try {
     const decodedToken = jwtDecode(token); // Use named import correctly
-  //  debugger;
+  //   ;
     if (decodedToken.exp * 1000 < Date.now()) {
       localStorage.removeItem('Token');
       return <Navigate to="/login" />;

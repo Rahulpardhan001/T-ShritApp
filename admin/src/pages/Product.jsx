@@ -29,7 +29,7 @@ function Product() {
   // ********delete single product handler ************//
   const handleDelete = (id) => {
     // console.log(id, "id is ");
-    // debugger;
+    //  ;
     dispatch(DeleteProduct(id));
   };
 

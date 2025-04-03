@@ -35,7 +35,7 @@ import { jwtDecode } from 'jwt-decode'; // Use named import
 import { toast } from 'react-toastify';
 
 function PrivateRoute({ children }) {
-    // debugger;
+    //  ;
   const token = localStorage.getItem('token');
 // console.log(token)
   if (!token) {
@@ -47,7 +47,7 @@ function PrivateRoute({ children }) {
   try {
     const decodedToken = jwtDecode(token); // Use named import correctly
     // console.log(decodedToken,"decode token is")
-  //  debugger;
+  //   ;
     if (decodedToken.exp * 1000 < Date.now()) {
       localStorage.removeItem('token');
       localStorage.removeItem("user");

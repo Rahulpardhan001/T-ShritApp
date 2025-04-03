@@ -3,7 +3,7 @@ import handleRequest from "../axios/axios";
 
 export const signupThunk = createAsyncThunk('/user/register',async(formData, {rejectWithValue})=>{
 try {
-    // debugger;
+    //  ;
     const res = await handleRequest('POST','/user/register',formData);
     console.log(res)
     return res;
@@ -17,7 +17,7 @@ try {
 
 export const LoginThunk = createAsyncThunk('/user/login',async(formData, {rejectWithValue})=>{
     try {
-        // debugger;
+        //  ;
         const res = await handleRequest('POST','/user/login',formData);
         console.log(res)
         return res;

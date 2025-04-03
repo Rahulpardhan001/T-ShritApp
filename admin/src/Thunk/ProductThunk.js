@@ -9,7 +9,7 @@ import handleRequest from "../axios/axios";
 export const AddProduct = createAsyncThunk("/addproduct", async (formDatas, { rejectWithValue }) => {
   try {
     // console.log(formDatas,"ldsffkkkkkkk")
-    // debugger;
+    //  ;
     const response = await handleRequest('POST','/addproduct',formDatas, true)
 
     console.log(response, "Product added successfully");
@@ -24,12 +24,12 @@ export const AddProduct = createAsyncThunk("/addproduct", async (formDatas, { re
 // **************************Get All product ********************//
 
 export const GetProduct = createAsyncThunk("/getproduct", async (_,{ rejectWithValue }) => {
-    // debugger;   
+    //  ;   
   try {
     // console.log(formDatas,"ldsffkkkkkkk")
    const res = await handleRequest('GET','/getproduct');
   //  console.log(res.product,"get all data thunk")
-//    debugger;
+//     ;
    return res?.product;
   } catch (error) {
     console.error("Error adding product:", error.response?.data || error.message);
@@ -41,12 +41,12 @@ export const GetProduct = createAsyncThunk("/getproduct", async (_,{ rejectWithV
 // **************************Get single product ********************//
 
 export const GetSingleProduct = createAsyncThunk("/getsingleproduct", async (id,{ rejectWithValue }) => {
-  // debugger;   
+  //  ;   
 try {
   // console.log(formDatas,"ldsffkkkkkkk")
  const res = await handleRequest('GET',`/getsingleproduct/${id}`);
  console.log(res.product,"get single data thunk")
-//    debugger;
+//     ;
  return res?.product;
 } catch (error) {
   console.error("Error adding product:", error.response?.data || error.message);
@@ -57,12 +57,12 @@ try {
 
 // **************************Delete Request ********************//
 export const DeleteProduct = createAsyncThunk("/deleteproduct", async (id,{ rejectWithValue }) => {
-  // debugger;   
+  //  ;   
 
 try {
  const res = await handleRequest('DELETE',`/deleteproduct/${id}`);
  console.log(res.product,"delete data thunk")
-//    debugger;
+//     ;
  return res;
 } catch (error) {
   console.error("Error Delete product:", error.response?.data || error.message);
@@ -74,7 +74,7 @@ try {
 
 export const UpdateProduct = createAsyncThunk("/updateproduct", async ( {id, formDatas} , { rejectWithValue }) => {
   console.log(formDatas.image,"thunk datalsllfjsdklj")
-// debugger;
+//  ;
   try {
     
       const res = await handleRequest("PUT", `/updateproduct/${id}`, formDatas, true);
@@ -92,12 +92,12 @@ export const UpdateProduct = createAsyncThunk("/updateproduct", async ( {id, for
 
 
 export const SearchThunk = createAsyncThunk("/search", async (query,{ rejectWithValue }) => {
-  // debugger;   
+  //  ;   
 try {
   console.log(query,"ldsffkkkkkkk")
  const res = await handleRequest('GET', `/search?query=${query}`);
  console.log(res.product,"get all data thunk search")
-//    debugger;
+//     ;
  return res?.product;
 } catch (error) {
   console.error("Error adding product:", error.response?.data || error.message);

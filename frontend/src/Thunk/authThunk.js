@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const userRegister = createAsyncThunk('/user/register',async(formData, {rejectWithValue})=>{
     try {
-        // debugger;
+        //  ;
         const res = await handleRequest('POST','/user/register',formData);
         // console.log(res,"user detail")
         return res;
@@ -15,7 +15,7 @@ export const userRegister = createAsyncThunk('/user/register',async(formData, {r
 
 export const userLogin = createAsyncThunk('/user/login',async(userData, {rejectWithValue})=>{
     try {
-        // debugger;
+        //  ;
         const res = await handleRequest('POST','/user/login',userData);
         // console.log(res,"my login response")
         return res;
@@ -29,7 +29,7 @@ export const userLogin = createAsyncThunk('/user/login',async(userData, {rejectW
     export const changepassword = createAsyncThunk("/user/changepassword", async ({ oldPassword, newPassword }, { rejectWithValue }) => { 
 
           try {
-            // debugger;
+            //  ;
             const res = await handleRequest("POST", "/user/changepassword", { oldPassword, newPassword });
             // console.log(res, "password change success");
             return res;

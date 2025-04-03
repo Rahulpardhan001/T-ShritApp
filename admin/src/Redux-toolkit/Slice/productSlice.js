@@ -106,7 +106,7 @@ const productSlice = createSlice({
       })
       .addCase(DeleteProduct.rejected, (state, action) => {
         state.status = action.error;
-        // debugger;
+        //  ;
         // toast.error("product can't deleted")
         state.error = action.payload.message;
       })

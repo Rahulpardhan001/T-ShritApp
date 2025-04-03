@@ -33,7 +33,7 @@ function ProductUpdate() {
   }, [dispatch, id]);
 
   useEffect(() => {
-    // debugger;
+    //  ;
     if (products) {
       setFormData((prev) => ({
         ...prev,
@@ -78,7 +78,7 @@ function ProductUpdate() {
 
   const submitHandle = async (e) => {
     e.preventDefault();
-    // debugger;
+    //  ;
     console.log(formData, "Data");
 
     const formDatas = new FormData();
