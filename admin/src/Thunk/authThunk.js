@@ -17,7 +17,7 @@ try {
 
 export const LoginThunk = createAsyncThunk('/user/login',async(formData, {rejectWithValue})=>{
     try {
-        //  ;
+        
         const res = await handleRequest('POST','/user/login',formData);
         console.log(res)
         return res;
