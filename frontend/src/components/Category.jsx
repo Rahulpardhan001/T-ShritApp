@@ -1,12 +1,13 @@
 import React from 'react';
+import { IMAGES } from '../assets/ImageGallary/images';
 
 const categories = [
-  { name: "Phones", img: "../src/assets/img/categoryImg/Category-CellPhone.png" },
-  { name: "Computers", img: "../src/assets/img/categoryImg/Category-Computer.png" },
-  { name: "SmartWatch", img: "../src/assets/img/categoryImg/Category-SmartWatch.png" },
-  { name: "Camera", img: "../src/assets/img/categoryImg/Category-Camera.png" },
-  { name: "HeadPhones", img: "../src/assets/img/categoryImg/Category-HeadPhone.png" },
-  { name: "Gaming", img: "../src/assets/img/categoryImg/Category-Gamepad.png" }
+  { name: "Computers", img:  IMAGES.CATEGORY_COMPUTER,},
+  { name: "SmartWatch", img: IMAGES.CATEGORY_SMARTWATCH,},
+  { name: "Camera", img:  IMAGES.CATEGORY_CAMERA, },
+  { name: "HeadPhones", img: IMAGES.CATEGORY_HEADPHONE ,},
+  { name: "Gaming", img:  IMAGES.CATEGORY_GAMING, },
+  { name: "Gaming", img:  IMAGES.CATEGORY_PHONE }
 ];
 
 const CategoryItem = ({ name, img }) => (

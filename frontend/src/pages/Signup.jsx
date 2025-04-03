@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 // import { userRegister } from '../redux/feature/authSlice';
 import { toast } from "react-toastify";
 import { userRegister } from "../Thunk/authThunk";
+import { IMAGES } from "../assets/ImageGallary/images";
 function Signup() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -40,7 +41,7 @@ function Signup() {
             <div className="left">
               <img
                 className="w-full lg:w-[819px] h-auto "
-                src="../src/assets/img/authImg.png "
+                src={IMAGES.LOGIN_IMG}
                 alt=""
               />
             </div>

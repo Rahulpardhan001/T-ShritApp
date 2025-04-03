@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate} from "react-router-dom";
 import { userLogin } from "../Thunk/authThunk";
 import { toast } from "react-toastify";
-
+import { IMAGES } from "../assets/ImageGallary/images";
 
 function Login() {
   const navigate = useNavigate()
@@ -45,7 +45,7 @@ function Login() {
             <div className="left">
               <img
                 className="w-full lg:w-[819px] h-auto "
-                src="../src/assets/img/categoryImg/authImg.png"
+              src={IMAGES.LOGIN_IMG}
                 alt=""
               />
             </div>
