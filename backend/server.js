@@ -14,9 +14,7 @@ const cartRoute = require('./Routes/cartRoute')
 const wishlistRoute = require('./Routes/wishlisthRoute')
 // const connectCloudinary = require('./utills/cloudnary');
 const corsOptions = {
-  origin: [
-   "*"
-  ],
+  origin: "*",
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
 };
 
