@@ -51,7 +51,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(userLogin.fulfilled, (state, action) => {
-        debugger;
+        // debugger;
         state.user = action.payload.username;
         localStorage.setItem("user",JSON.stringify(action.payload.username))
         // console.log(action.payload,"klfjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjls")
