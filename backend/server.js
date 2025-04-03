@@ -14,13 +14,8 @@ const cartRoute = require('./Routes/cartRoute')
 const wishlistRoute = require('./Routes/wishlisthRoute')
 // const connectCloudinary = require('./utills/cloudnary');
 const corsOptions = {
-  origin: [
-    "http://localhost:5173", 
-    "http://localhost:5174",
-    "https://sprightly-speculoos-c7b014.netlify.app"
-  ],
+  origin: "*",
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
-  credentials: true
 };
 
 
