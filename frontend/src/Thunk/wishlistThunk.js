@@ -3,10 +3,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import handleRequest from "../axios/axiosInstance";
 
-export const addwishlist = createAsyncThunk('/addtowishlist', async ({productId}, { rejectWithValue }) => {
+export const addwishlist = createAsyncThunk('/api/addtowishlist', async ({productId}, { rejectWithValue }) => {
     // console.log(productId,"thunk add to wishlist send id")
      try {
-     const res = await handleRequest('POST','/addtowishlist',{productId})
+     const res = await handleRequest('POST','/api/addtowishlist',{productId})
     //  console.log("response ",res)
       return res; 
      } catch (error) {
@@ -22,9 +22,9 @@ export const addwishlist = createAsyncThunk('/addtowishlist', async ({productId}
 
   // ***************************** Get wishlist items ****************************//
 
-export const getwishlist = createAsyncThunk('/getwishlistitem', async (_, { rejectWithValue }) => {
+export const getwishlist = createAsyncThunk('/api/getwishlistitem', async (_, { rejectWithValue }) => {
     try {
-        const res = await handleRequest('GET','/getwishlistitem')
+        const res = await handleRequest('GET','/api/getwishlistitem')
         // debugger;   
     //  console.log("response commee ",res)
       return res; 
@@ -40,9 +40,9 @@ export const getwishlist = createAsyncThunk('/getwishlistitem', async (_, { reje
   );
   // ***************************** Delelte wishlist items ****************************//
 
-  export const deleteWishlistItem = createAsyncThunk("/deletewishlistitem", async (id,{ rejectWithValue }) => {
+  export const deleteWishlistItem = createAsyncThunk("/api/deletewishlistitem", async (id,{ rejectWithValue }) => {
     try {
-     const res = await handleRequest('DELETE',`/deletewishlistitem/${id}`);
+     const res = await handleRequest('DELETE',`/api/deletewishlistitem/${id}`);
      console.log(res,"DELETE wishlist Item  thunk")
      return res;
     } catch (error) {

@@ -6,10 +6,10 @@ import handleRequest from "../axios/axiosInstance";
 
 
 // ********************** fetch all product****************//
-export const fetchProduct = createAsyncThunk("/getproduct", async (_,{ rejectWithValue }) => {
+export const fetchProduct = createAsyncThunk("/api/getproduct", async (_,{ rejectWithValue }) => {
   try {
       //  debugger;
-   const res = await handleRequest('GET','/getproduct');
+   const res = await handleRequest('GET','/api/getproduct');
   //  console.log(res.product,"get all data thunk")
    return res.product;
   } catch (error) {
@@ -18,11 +18,11 @@ export const fetchProduct = createAsyncThunk("/getproduct", async (_,{ rejectWit
   }
 });
 // **************************search Request ********************//
-export const SearchThunk = createAsyncThunk("/search", async (query,{ rejectWithValue }) => {
+export const SearchThunk = createAsyncThunk("/api/search", async (query,{ rejectWithValue }) => {
   // debugger;   
 try {
   // console.log(query,"ldsffkkkkkkk")
- const res = await handleRequest('GET', `/search?query=${query}`);
+ const res = await handleRequest('GET', `/api/search?query=${query}`);
  console.log(res.product,"get all data thunk search")
 //    debugger;
  return res?.product;
@@ -34,10 +34,10 @@ try {
   
   // *****************fetch single product *****************//
   
-  export const fetchSingleProduct = createAsyncThunk("/getsingleproduct", async (id,{ rejectWithValue }) => {
+  export const fetchSingleProduct = createAsyncThunk("/api/getsingleproduct", async (id,{ rejectWithValue }) => {
     try {
         //  debugger;
-     const res = await handleRequest('GET',`/getsingleproduct/${id}`);
+     const res = await handleRequest('GET',`/api/getsingleproduct/${id}`);
     //  console.log(res,"get all data thunk")
      return res.product;
     } catch (error) {
@@ -49,10 +49,10 @@ try {
 
   //************************************ ADD TO CART**************************//
 
-export const addtocart = createAsyncThunk("/addToCart", async({productId, quantity},{rejectWithValue})=>{
+export const addtocart = createAsyncThunk("/api/addToCart", async({productId, quantity},{rejectWithValue})=>{
   // debugger;
   try {
-      const res = await handleRequest('POST','/addToCart',{productId, quantity})
+      const res = await handleRequest('POST','/api/addToCart',{productId, quantity})
       // console.log(res,"cart data added")
       return res.data;
   } catch (error) {
@@ -64,11 +64,11 @@ export const addtocart = createAsyncThunk("/addToCart", async({productId, quanti
 
 //************************************ fetch cart items**************************//
 
-export const getcartitem = createAsyncThunk("/getcartitem", async (_,{ rejectWithValue }) => {
+export const getcartitem = createAsyncThunk("/api/getcartitem", async (_,{ rejectWithValue }) => {
   try {
     // console.log(formDatas,"ldsffkkkkkkk")
       //  debugger;
-   const res = await handleRequest('GET','/getcartitem');
+   const res = await handleRequest('GET','/api/getcartitem');
   //  console.log(res.data.items,"get all fetchCartItems  thunk")
    return res.data;
   } catch (error) {
@@ -79,11 +79,11 @@ export const getcartitem = createAsyncThunk("/getcartitem", async (_,{ rejectWit
 
 //******************************** update cart item ************************//
 
-export const updatecartitem = createAsyncThunk("/updatecartitem", async ({productId, quantity},{ rejectWithValue }) => {
+export const updatecartitem = createAsyncThunk("/api/updatecartitem", async ({productId, quantity},{ rejectWithValue }) => {
   try {
     // console.log(formDatas,"ldsffkkkkkkk")
       //  debugger;
-   const res = await handleRequest('PUT',`/updatecartitem`, {productId,quantity});
+   const res = await handleRequest('PUT',`/api/updatecartitem`, {productId,quantity});
   //  console.log(res,"DELETE Cart Item  thunk")
    return res.data;
   } catch (error) {
@@ -92,11 +92,11 @@ export const updatecartitem = createAsyncThunk("/updatecartitem", async ({produc
   }
 });
 //************************************ deletecartitem**************************//
-export const deletecartitem = createAsyncThunk("/deletecartitem", async ({productId},{ rejectWithValue }) => {
+export const deletecartitem = createAsyncThunk("/api/deletecartitem", async ({productId},{ rejectWithValue }) => {
   try {
     // console.log(formDatas,"ldsffkkkkkkk")
       //  debugger;
-   const res = await handleRequest('DELETE',`/deletecartitem/${productId}`);
+   const res = await handleRequest('DELETE',`/api/deletecartitem/${productId}`);
    console.log(res.data,"DELETE Cart Item  thunk")
    return res.data;
   } catch (error) {
