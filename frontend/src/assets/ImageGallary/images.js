@@ -1,16 +1,21 @@
-const loginImg = "./src/assets/img/auth.png ";
-const sliderImg1 = "../img/s1.png";
-const sliderImg2 = "../img/s2.png";
-const sliderImg3 = "../img/s3.png";
-const sliderImg4 = "../img/s4.png";
-const sliderImg5 = "../img/s5.png";
+import loginImg from "../img/auth.png";
+import sliderImg1 from "../img/s1.png";
+
+// import sliderImg1 from "../../assets/img/s1.png"
+import sliderImg2 from "../img/s2.png";
+import sliderImg3 from "../img/s3.png";
+import sliderImg4 from "../img/s4.png";
+import sliderImg5 from "../img/s5.png";
+// const sliderImg1 = "../img/s1.png";
+
 // const category1 = "../img/categoryImg/Category-Camera.png";
-const Phones = "./src/assets/img/categoryImg/Category-CellPhone.png";
-const Computers = "./src/assets/img/categoryImg/Category-Computer.png";
-const SmartWatch = "./src/assets/img/categoryImg/Category-SmartWatch.png";
-const Camera = "./src/assets/img/categoryImg/Category-Camera.png";
-const HeadPhones = "./src/assets/img/categoryImg/Category-HeadPhone.png";
-const Gaming = "./src/assets/img/categoryImg/Category-Gamepad.png";
+import Phones from "../img/categoryImg/Category-CellPhone.png";
+import Computers from "../img/categoryImg/Category-Computer.png";
+import SmartWatch from "../img/categoryImg/Category-SmartWatch.png";
+import Camera from "../img/categoryImg/Category-Camera.png";
+import HeadPhones from "../img/categoryImg/Category-Headphone.png";
+import Gaming from "../img/categoryImg/Category-Gamepad.png";
+// const Gaming = "../img/categoryImg/Category-Camera.png";
 
 export const IMAGES = {
   LOGIN_IMG: loginImg,

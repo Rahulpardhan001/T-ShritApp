@@ -7,7 +7,7 @@ const categories = [
   { name: "Camera", img:  IMAGES.CATEGORY_CAMERA, },
   { name: "HeadPhones", img: IMAGES.CATEGORY_HEADPHONE ,},
   { name: "Gaming", img:  IMAGES.CATEGORY_GAMING, },
-  { name: "Gaming", img:  IMAGES.CATEGORY_PHONE }
+  { name: "Phone", img:  IMAGES.CATEGORY_PHONE }
 ];
 
 const CategoryItem = ({ name, img }) => (
