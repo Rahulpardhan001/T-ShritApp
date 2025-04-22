@@ -66,20 +66,7 @@ const cartSlice = createSlice({
                         state.error = action.payload || 'Failed to update to cart';
                       })
 
-                      // ***********************deletecart*************************//
-
-                    // .addCase(deletecartitem.pending, (state)=>{
-                    //     state.status ='loading',
-                    //     state.error = null
-                    // })
-                    // .addCase(deletecartitem.fulfilled, (state,action)=>{
-                    //     state.status ='succeeded',
-                    //     state.items = action.payload.items
-                    // })
-                    // .addCase(deletecartitem.rejected, (state, action) => {
-                    //     state.status = 'failed';
-                    //     state.error = action.payload || 'Failed to update to cart';
-                    //   })
+                  
     }
 })
 

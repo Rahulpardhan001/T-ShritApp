@@ -11,7 +11,7 @@ function Wishlist() {
   
   const { loading, items } = useSelector((state) => state.wishlist);
   const [loadingItem, setLoadingItem] = useState(null); 
-  // console.log("hello lkdj",items)
+  console.log("hello lkdj",items)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,9 +42,10 @@ const addToCart = async (id, quantity) => {
     setLoadingItem(null)
   }
 };
-  // if(loading) return <Loader/>
+if (loading) return <Loader />;
   return (
     <>
+          {/* {loading && <div><Loader /></div>} */}
       <div className="wishcontainer px-12">
         <div className="flex justify-between my-5">
           <h3 className="p-1 font-normal">Wishlist ({items?.length})</h3>
@@ -56,8 +57,7 @@ const addToCart = async (id, quantity) => {
         </div>
 
         <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 gap-6 lg:grid-cols-4 my-5 ">
-          {loading && <div><Loader /></div>}
-          { items?.length === 0 ? <div className="text-2xl"> Wishlist is Empty</div>:(
+          {items && items?.length  >0 ? (
             items?.map((item, index) => {
                     return (
                 <div className="shadow   relative" key={index}>
@@ -97,7 +97,8 @@ const addToCart = async (id, quantity) => {
                 </div>
               );
             })
-          )}
+          ):<div className="text-2xl"> Wishlist is Empty</div>
+          }
         </div>
       </div>
     </>

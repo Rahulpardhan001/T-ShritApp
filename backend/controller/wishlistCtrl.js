@@ -21,7 +21,7 @@ const addTowishlist = async (req, res) => {
       wishlist = new Wishlist({ userId, productId: [productId] });
     }
     await wishlist.save();
-    res
+   return res
       .status(200)
       .json({ success: true, message: "Product Added to Wishlist", wishlist });
   } catch (error) {
@@ -40,7 +40,7 @@ const getwishlist = async (req, res) => {
       return res.status(204).json({ success: true, message: "Wishlist is Empty" });
     }
 
-    res.status(200).send({ success: true, wishlist });
+    return res.status(200).send({ success: true, wishlist });
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
   }

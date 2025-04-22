@@ -97,7 +97,7 @@ export const deletecartitem = createAsyncThunk("/api/deletecartitem", async ({pr
     // console.log(formDatas,"ldsffkkkkkkk")
       //   ;
    const res = await handleRequest('DELETE',`/api/deletecartitem/${productId}`);
-   console.log(res.data,"DELETE Cart Item  thunk")
+  //  console.log(res.data,"DELETE Cart Item  thunk")
    return res.data;
   } catch (error) {
     console.error("Error adding product:", error.response?.data || error.message);

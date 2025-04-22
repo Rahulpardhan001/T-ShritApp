@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { IMAGES } from "../assets/ImageGallary/images";
+import { IMAGESGALLARY } from "../assets/images/images";
 
 function HeroBanner() {
   return (
@@ -59,7 +60,7 @@ function AutoPlaySlider() {
     <div className="w-full rounded-lg overflow-hidden shadow-lg">
       <Slider ref={(slider) => (sliderRef.current = slider)} {...settings}>
         {[
-          IMAGES.SLIDE_IMG1,
+          IMAGESGALLARY.SLIDE_ONE,
           IMAGES.SLIDE_IMG2,
           IMAGES.SLIDE_IMG3,
           IMAGES.SLIDE_IMG4,

@@ -51,7 +51,7 @@ function Cart() {
     <div className="container mx-auto my-8 px-4 sm:px-6 lg:px-16">
       <h2 className="text-2xl font-bold mb-6 text-center sm:text-left text-gray-800">Your Cart</h2>
       
-      {items.length > 0 ? (
+      {items && items?.length > 0 ? (
         <div className="overflow-x-auto bg-white rounded-lg shadow-lg p-4">
           <table className="w-full table-auto text-sm sm:text-base">
             <thead className="bg-gray-200">
