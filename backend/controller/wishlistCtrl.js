@@ -1,4 +1,5 @@
 const Wishlist = require("../models/wishlistModel");
+// const responseHandler = require("../utills/responseHandler");
 
 
 // **************** Add to Wishlist **************** //
@@ -36,7 +37,7 @@ const getwishlist = async (req, res) => {
     const wishlist = await Wishlist.findOne({ userId }).populate("productId");
     // console.log(userId,"wish", wishlist)
     if (!wishlist) {
-      res.status.json({ success: false, message: "Wishlist is Empty" });
+      return res.status(204).json({ success: true, message: "Wishlist is Empty" });
     }
 
     res.status(200).send({ success: true, wishlist });
@@ -45,7 +46,6 @@ const getwishlist = async (req, res) => {
   }
 };
 
-// **************** delete to Wishlist **************** //
 
 const deletewishlistitem = async (req, res) => {
   try {
