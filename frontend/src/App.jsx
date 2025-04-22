@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
@@ -17,12 +17,13 @@ import Footer from './components/Footer'
 
 const App = () => {
   // const { token } = useSelector((state) => state.auth);
+ const location = useLocation()
   return (
    <>
-  {/* <Header/> */}
   <Header/>
+  {/* <Header/> */}
   <Routes>
-  <Route path='/' element={<Home/>}  />
+  <Route path='/' element={<ProtectedRoute><Home/></ProtectedRoute>}  />
   {/* <Route path='/me' element={<Home/>}/> */}
   <Route path='/product/:id' element={<ProtectedRoute><SinglePage/></ProtectedRoute>}  />
   <Route path='/cart' element={<ProtectedRoute><Cart/></ProtectedRoute>}  />
@@ -35,7 +36,8 @@ const App = () => {
    <Route path='*' element={<Error/>} /> 
 
       </Routes>
-  <Footer/>
+      {location.pathname === '/cart' || location.pathname === '/wishlist' ?"" : <Footer />}
+
    </>
   )
 }
