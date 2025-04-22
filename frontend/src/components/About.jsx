@@ -1,7 +1,12 @@
 import React from "react";
 import { IMAGES } from "../assets/ImageGallary/images";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+    const navigate = useNavigate()
+    const hndleShopNow =()=>{
+        navigate('/')
+    }
   return (
     <section className="w-full bg-white py-12 px-6 md:px-16 lg:px-24">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
@@ -27,7 +32,7 @@ const About = () => {
             <li>✅ Exceptional customer support</li>
             <li>✅ Trusted by thousands of happy customers</li>
           </ul>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow-md transition duration-200">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow-md transition duration-200" onClick={hndleShopNow}>
             Shop Now
           </button>
         </div>
