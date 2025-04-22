@@ -10,7 +10,7 @@ name:'wishlist',
 initialState:{
     items:[],
     state:'idle',
-    loading:true,
+    loading:false,
     error: null
 },
 reducers:{
@@ -32,7 +32,7 @@ extraReducers:(builder)=>{
 
     })
     .addCase(addwishlist.rejected, (state, action) => {
-        state.loading =true
+        state.loading =false;
         // toast.warn("error added in wishlist")
         state.error = action.payload || 'Failed to add  wishlist ';
       })
@@ -46,8 +46,8 @@ extraReducers:(builder)=>{
      .addCase(getwishlist.fulfilled, (state,action)=>{
         state.loading =false
         console.log(action.payload,"what data")
-        toast.success(action.payload.message)
-        state.items = action.payload.wishlist.productId
+        // toast.success(action.payload.message)
+        state.items = action.payload?.wishlist?.productId ||[]
 
     })
     .addCase(getwishlist.rejected, (state, action) => {
@@ -64,7 +64,7 @@ extraReducers:(builder)=>{
      })
      .addCase(deleteWishlistItem.fulfilled, (state,action)=>{
         state.loading =false
-        console.log(action.payload,"what data")
+        // console.log(action.payload,"what data")
         toast.success(action.payload.message)
         // state.items = action.payload.wishlist.productId
 
